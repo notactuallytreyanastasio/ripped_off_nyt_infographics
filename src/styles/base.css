@@ -1,0 +1,108 @@
+/*
+ * Base newsroom styles. Restraint is the point: black, greys, one accent.
+ * Override the custom properties in :root to re-skin; build on the tokens.
+ */
+:root {
+  --ink: #121212;
+  --ink-2: #333;
+  --muted: #666;
+  --faint: #999;
+  --rule: #e2e2e2;
+  --rule-strong: #121212;
+  --paper: #fff;
+  --wash: #f7f7f5;
+  --accent: #b5371f;        /* the single highlight colour, used sparingly */
+  --accent-soft: #e9c9c1;
+  --data-1: #121212;
+  --data-2: #8c8c8c;
+  --data-3: #c8c8c8;
+
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --sans: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+
+  --col: 600px;             /* body text measure */
+  --wide: 1000px;
+  --gutter: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------ site chrome */
+.masthead {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 44px; padding: 0 var(--gutter);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.02em;
+}
+.masthead a { color: var(--ink); text-decoration: none; }
+.masthead .brand { font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+/* --------------------------------------------------------------- type */
+.kicker {
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink);
+}
+.headline {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(34px, 5vw, 54px); line-height: 1.08; letter-spacing: -0.01em;
+  margin: 0.3em 0 0.4em;
+}
+.dek { font-family: var(--serif); font-size: 23px; line-height: 1.4; color: var(--ink-2); margin: 0 0 1em; }
+.byline { font-family: var(--sans); font-size: 14px; color: var(--muted); }
+.byline strong { color: var(--ink); font-weight: 600; }
+
+.prose { max-width: var(--col); margin: 0 auto; padding: 0 var(--gutter); }
+.prose p { margin: 0 0 1.1em; }
+.wide { max-width: var(--wide); margin: 0 auto; padding: 0 var(--gutter); }
+
+h2.section {
+  font-family: var(--sans); font-weight: 700; font-size: 26px; line-height: 1.2;
+  margin: 2.2em 0 0.6em;
+}
+
+/* ---------------------------------------------------------- graphics */
+.graphic { margin: 2em auto; font-family: var(--sans); }
+.graphic-title { font-family: var(--sans); font-weight: 700; font-size: 17px; margin: 0 0 2px; }
+.graphic-sub { font-family: var(--sans); font-size: 14px; color: var(--muted); margin: 0 0 10px; line-height: 1.35; }
+.graphic-source {
+  font-family: var(--sans); font-size: 12px; color: var(--faint);
+  margin-top: 8px; line-height: 1.4;
+}
+svg text { font-family: var(--sans); }
+/* Only text with no fill of its own: CSS beats SVG presentation attributes,
+   so a plain `fill` here would turn every kit label black. */
+svg text:not([fill]) { fill: var(--ink); }
+.axis text { font-size: 12px; fill: var(--muted); }
+.axis line, .axis path { stroke: var(--rule); }
+.axis .domain { display: none; }
+.annotation text { font-size: 13px; }
+.annotation line { stroke: var(--ink); stroke-width: 1; }
+
+.tooltip {
+  position: absolute; pointer-events: none; z-index: 60;
+  background: var(--paper); border: 1px solid var(--ink);
+  padding: 6px 9px; font-family: var(--sans); font-size: 13px; line-height: 1.35;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.caption { font-family: var(--sans); font-size: 14px; color: var(--muted); line-height: 1.4; margin-top: 6px; }
+.caption .credit { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--faint); margin-left: 4px; }
+
+.error-box { max-width: var(--col); margin: 80px auto; padding: 20px; border: 1px solid var(--accent); font-family: var(--sans); font-size: 15px; }
+.error-box pre { white-space: pre-wrap; font-size: 12px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+}
